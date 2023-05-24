@@ -2,6 +2,7 @@ package com.example.sampleproject.librarymanagementsystem.members;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Member {
@@ -11,6 +12,11 @@ public class Member {
 	private String Member_Name;
 	private long Phone;
 	private String address;
+	
+	
+	public Member() {
+		
+	}
 	public Member(long member_ID, String member_Name, long phone, String address) {
 		super();
 		Member_ID = member_ID;

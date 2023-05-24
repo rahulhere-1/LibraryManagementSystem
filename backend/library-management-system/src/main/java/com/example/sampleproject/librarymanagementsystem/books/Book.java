@@ -1,34 +1,43 @@
 package com.example.sampleproject.librarymanagementsystem.books;
 
+import com.example.sampleproject.librarymanagementsystem.borrowedby.Borrowed;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Book {
 	@Id
-	private String Book_ID;
-	private String Book_Title;
+	private String bookID;
+	private String book_title;
 	private String Author;
 	
+	@OneToOne(mappedBy="book")
+	private Borrowed borrowed;
+	
+	public Book() {
+		
+	}
 	public Book(String book_ID, String book_Title, String author) {
 		super();
-		Book_ID = book_ID;
-		Book_Title = book_Title;
+		bookID = book_ID;
+		book_title = book_Title;
 		Author = author;
 	}
 	
 	
 	public String getBook_ID() {
-		return Book_ID;
+		return bookID;
 	}
 	public void setBook_ID(String book_ID) {
-		Book_ID = book_ID;
+		bookID = book_ID;
 	}
 	public String getBook_Title() {
-		return Book_Title;
+		return book_title;
 	}
 	public void setBook_Title(String book_Title) {
-		Book_Title = book_Title;
+		book_title = book_Title;
 	}
 	public String getAuthor() {
 		return Author;
@@ -38,7 +47,7 @@ public class Book {
 	}
 	@Override
 	public String toString() {
-		return "Book [Book_ID=" + Book_ID + ", Book_Title=" + Book_Title + ", Author=" + Author + "]";
+		return "Book [Book_ID=" + bookID + ", Book_Title=" + book_title + ", Author=" + Author + "]";
 	}
 	
 	
