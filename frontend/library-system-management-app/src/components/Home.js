@@ -1,12 +1,12 @@
 import { React } from "react";
 import { Container } from "react-bootstrap";
-import AddBook from "./AddBook";
-import BorrowedTable from "./BorrowedTable";
+import AddBorrower from "./Borrowed/AddBorrower";
+import BorrowedTable from "./Borrowed/BorrowedTable";
 const Home = () => {
   return (
     <div>
       <Container className="bg-light ">
-        <AddBook />
+        <AddBorrower />
         <BorrowedTable />
       </Container>
     </div>

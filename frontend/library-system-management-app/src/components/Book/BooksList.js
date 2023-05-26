@@ -1,10 +1,12 @@
 import React from "react";
 import { Container, Table } from "react-bootstrap";
+import AddBooks from "./AddBooks";
 const BooksList = () => {
   return (
     <div>
       <Container className="mt-5">
-        <h2>ALL Library Books</h2>
+        <AddBooks />
+        <h2 className="mt-5">ALL Library Books</h2>
         <Table striped bordered hover>
           <thead>
             <tr>
