@@ -11,7 +11,6 @@ import jakarta.persistence.OneToOne;
 public class Member {
 
 	@Id
-	@GeneratedValue
 	private long id;
 	private String name;
 	private long phone;

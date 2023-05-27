@@ -12,6 +12,8 @@ import com.example.sampleproject.librarymanagementsystem.members.MembersJpaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +34,11 @@ public class ManagementSystemController {
 		return bookRepository.findAll();
 	}
 	
+	@PostMapping(path="/library")
+	public void addBooks(@RequestBody Book book) {
+		bookRepository.save(book);
+	}
+	
 
 	@GetMapping(path="/library/{bookID}")
 	public Optional<Book> findThisBook(@PathVariable String bookID ) {
@@ -49,6 +56,11 @@ public class ManagementSystemController {
 		return memberRepository.findAll();
 	}
 	
+	@PostMapping(path="/members")
+	public void addMembers(@RequestBody Member member) {
+		memberRepository.save(member);
+	}
+	
 	@GetMapping(path="/members/{memberID}")
 	public Optional<Member> retrieveAllMembers(@PathVariable Long memberID) {
 		return memberRepository.findById(memberID);
@@ -59,9 +71,21 @@ public class ManagementSystemController {
 		return borrowedRepository.findAll();
 	}
 	
+	@PostMapping(path="/borrowed")
+	public void addBorrowers(@RequestBody Borrowed borrower) {
+		 
+		 borrowedRepository.save(borrower);
+	}
+	
+	
 	@GetMapping(path="/borrowed/isbn/{isbn}")
 	public List<Borrowed> getByIsbn(@PathVariable String isbn) {
 		return borrowedRepository.findByBookIsbn(isbn);
+	}
+	
+	@GetMapping(path="/borrowed/member/{id}")
+	public List<Borrowed> getByMemberId(@PathVariable Long id) {
+		return borrowedRepository.findByMemberId(id);
 	}
 	
 }
