@@ -27,8 +27,23 @@ public class Borrowed {
 	@OneToOne
 	private Member member;
 	
+	
 	private Date issueDate;
 	private Date dueDate;
+	
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	
 
 	public Book getBook() {

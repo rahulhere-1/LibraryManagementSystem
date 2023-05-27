@@ -1,6 +1,9 @@
 package com.example.sampleproject.librarymanagementsystem.members;
 
+import com.example.sampleproject.librarymanagementsystem.borrowedby.Borrowed;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
@@ -8,49 +11,64 @@ import jakarta.persistence.OneToOne;
 public class Member {
 
 	@Id
-	private long Member_ID;
-	private String Member_Name;
-	private long Phone;
+	@GeneratedValue
+	private long id;
+	private String name;
+	private long phone;
 	private String address;
 	
 	
 	public Member() {
 		
 	}
-	public Member(long member_ID, String member_Name, long phone, String address) {
-		super();
-		Member_ID = member_ID;
-		Member_Name = member_Name;
-		Phone = phone;
-		this.address = address;
+
+
+	public long getId() {
+		return id;
 	}
-	public long getMember_ID() {
-		return Member_ID;
+
+
+	public void setId(long id) {
+		this.id = id;
 	}
-	public void setMember_ID(long member_ID) {
-		Member_ID = member_ID;
+
+
+	public String getName() {
+		return name;
 	}
-	public String getMember_Name() {
-		return Member_Name;
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setMember_Name(String member_Name) {
-		Member_Name = member_Name;
-	}
+
+
 	public long getPhone() {
-		return Phone;
+		return phone;
 	}
+
+
 	public void setPhone(long phone) {
-		Phone = phone;
+		this.phone = phone;
 	}
+
+
 	public String getAddress() {
 		return address;
 	}
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Override
-	public String toString() {
-		return "Member [Member_ID=" + Member_ID + ", Member_Name=" + Member_Name + ", Phone=" + Phone + ", address="
-				+ address + "]";
+
+
+	public Member(long id, String name, long phone, String address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
 	}
+	
 }
