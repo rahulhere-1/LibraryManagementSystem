@@ -3,10 +3,10 @@ import { Button } from "react-bootstrap";
 const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{contact.fullName}</td>
-      <td>{contact.address}</td>
-      <td>{contact.phoneNumber}</td>
-      <td>{contact.email}</td>
+      <td>{contact.isbn}</td>
+      <td>{contact.title}</td>
+      <td>{contact.author}</td>
+
       <td>
         <Button
           type="button"
@@ -19,7 +19,7 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
           variant="danger"
           type="button"
           className="m-1"
-          onClick={() => handleDeleteClick(contact.id)}
+          onClick={() => handleDeleteClick(contact.isbn)}
         >
           Delete
         </Button>

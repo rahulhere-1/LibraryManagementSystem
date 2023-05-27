@@ -1,17 +1,17 @@
 import { React, useState, Fragment } from "react";
 import { Container, Table } from "react-bootstrap";
-import AddMembers from "./AddMembers";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import data from "./mock-data.json";
-const Members = () => {
+import AddMember from "./AddMembers";
+const BorrowedTable = () => {
   const [contacts, setContacts] = useState(data);
 
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
+    id: "",
+    name: "",
+    phone: "",
     address: "",
-    phoneNumber: "",
-    email: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -32,11 +32,10 @@ const Members = () => {
     event.preventDefault();
 
     const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,
+      id: editFormData.id,
+      name: editFormData.name,
+      phone: editFormData.phone,
       address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
-      email: editFormData.email,
     };
 
     const newContacts = [...contacts];
@@ -54,10 +53,10 @@ const Members = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      fullName: contact.fullName,
+      id: contact.id,
+      name: contact.name,
+      phone: contact.phone,
       address: contact.address,
-      phoneNumber: contact.phoneNumber,
-      email: contact.email,
     };
 
     setEditFormData(formValues);
@@ -76,20 +75,19 @@ const Members = () => {
 
     setContacts(newContacts);
   };
-
   return (
     <div>
-      <Container className="mt-5">
-        <AddMembers />
-        <h2 className="mt-5">List of Registered Members</h2>
+      <Container className="mt-3">
+        <AddMember />
+        <h2 className="mb-3 mt-5  "> List of Registered Members</h2>
         <form onSubmit={handleEditFormSubmit}>
           <Table striped bordered hover>
             <thead>
               <tr>
+                <th>#ID</th>
                 <th>Name</th>
+                <th>Phone</th>
                 <th>Address</th>
-                <th>Phone Number</th>
-                <th>Email</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -119,4 +117,4 @@ const Members = () => {
   );
 };
 
-export default Members;
+export default BorrowedTable;

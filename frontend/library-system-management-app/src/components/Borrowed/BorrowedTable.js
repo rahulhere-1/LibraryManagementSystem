@@ -7,9 +7,10 @@ const BorrowedTable = () => {
   const [contacts, setContacts] = useState(data);
 
   const [editFormData, setEditFormData] = useState({
-    bookId: "",
-    address: "",
-    phoneNumber: "",
+    isbn: "",
+    title: "",
+    memberId: "",
+    memberName: "",
     issueDate: "",
     dueDate: "",
   });
@@ -33,9 +34,10 @@ const BorrowedTable = () => {
 
     const editedContact = {
       id: editContactId,
-      bookId: editFormData.bookId,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
+      isbn: editFormData.isbn,
+      title: editFormData.title,
+      memberId: editFormData.memberId,
+      memberName: editFormData.memberName,
       issueDate: editFormData.issueDate,
       dueDate: editFormData.dueDate,
     };
@@ -55,9 +57,10 @@ const BorrowedTable = () => {
     setEditContactId(contact.id);
 
     const formValues = {
-      bookId: contact.bookId,
-      address: contact.address,
-      phoneNumber: contact.phoneNumber,
+      isbn: contact.isbn,
+      title: contact.title,
+      memberId: contact.memberId,
+      memberName: contact.memberName,
       issueDate: contact.issueDate,
       dueDate: contact.dueDate,
     };
@@ -86,9 +89,10 @@ const BorrowedTable = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Book ID</th>
-                <th>Address</th>
-                <th>Phone Number</th>
+                <th>#ISBN</th>
+                <th>Title</th>
+                <th>Member ID</th>
+                <th>Member Name</th>
                 <th>Issued Date</th>
                 <th>Due Date</th>
                 <th>Actions</th>
