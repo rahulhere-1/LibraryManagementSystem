@@ -12,6 +12,7 @@ import com.example.sampleproject.librarymanagementsystem.members.MembersJpaRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,6 +38,11 @@ public class ManagementSystemController {
 		return bookRepository.findById(bookID);
 	}
 	
+	@GetMapping(path="/library/author/{author}")
+	public List<Book> findBookByAuthor(@PathVariable String author ) {
+		return bookRepository.findByAuthor(author);
+	}
+	
 	
 	@GetMapping(path="/members")
 	public List<Member> retrieveAllMembers() {
@@ -51,6 +57,11 @@ public class ManagementSystemController {
 	@GetMapping(path="/borrowed")
 	public List<Borrowed> retrieveAllBorrowers() {
 		return borrowedRepository.findAll();
+	}
+	
+	@GetMapping(path="/borrowed/isbn/{isbn}")
+	public List<Borrowed> getByIsbn(@PathVariable String isbn) {
+		return borrowedRepository.findByBookIsbn(isbn);
 	}
 	
 }
