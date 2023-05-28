@@ -1,10 +1,29 @@
-import { React, useState, Fragment } from "react";
+import { React, useState, Fragment, useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
-import data from "./mock-data.json";
+import axios from "axios";
 const BorrowedTable = () => {
-  const [contacts, setContacts] = useState(data);
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/borrowed").then((res) => {
+      const json = [];
+
+      for (var i = 0; i < res.data.length; i++) {
+        var obj = {};
+        obj.id = res.data[i].id;
+        obj.isbn = res.data[i].book.isbn;
+        obj.title = res.data[i].book.title;
+        obj.memberId = res.data[i].member.id;
+        obj.memberName = res.data[i].member.name;
+        obj.issueDate = res.data[i].issueDate;
+        obj.dueDate = res.data[i].dueDate;
+        json.push(obj);
+      }
+      setContacts(json);
+    });
+  }, []);
 
   const [editFormData, setEditFormData] = useState({
     isbn: "",

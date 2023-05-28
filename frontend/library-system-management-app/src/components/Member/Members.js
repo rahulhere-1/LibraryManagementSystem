@@ -1,11 +1,18 @@
-import { React, useState, Fragment } from "react";
+import { React, useState, Fragment, useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import data from "./mock-data.json";
 import AddMember from "./AddMembers";
+import axios from "axios";
 const BorrowedTable = () => {
   const [contacts, setContacts] = useState(data);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/members")
+      .then((res) => setContacts(res.data));
+  }, []);
 
   const [editFormData, setEditFormData] = useState({
     id: "",

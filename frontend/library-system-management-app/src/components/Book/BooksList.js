@@ -1,11 +1,17 @@
-import { React, useState, Fragment } from "react";
+import { React, useState, useEffect, Fragment } from "react";
 import { Container, Table } from "react-bootstrap";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
-import data from "./mock-data.json";
 import AddBooks from "./AddBooks";
+import axios from "axios";
+
 const BooksList = () => {
-  const [contacts, setContacts] = useState(data);
+  const [contacts, setContacts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/library")
+      .then((res) => setContacts(res.data));
+  }, []);
 
   const [editFormData, setEditFormData] = useState({
     isbn: "",
