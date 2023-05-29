@@ -13,6 +13,7 @@ const EditableRow = ({
           required="required"
           placeholder="Enter a name..."
           name="isbn"
+          readOnly={true}
           value={editFormData.isbn}
           onChange={handleEditFormChange}
         ></input>

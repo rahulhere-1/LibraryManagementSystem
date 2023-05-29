@@ -11,8 +11,8 @@ const EditableRow = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter an address..."
           name="id"
+          readOnly={true}
           value={editFormData.id}
           onChange={handleEditFormChange}
         ></input>
@@ -21,7 +21,6 @@ const EditableRow = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter a phone number..."
           name="name"
           value={editFormData.name}
           onChange={handleEditFormChange}
@@ -31,7 +30,6 @@ const EditableRow = ({
         <input
           type="text"
           required="required"
-          placeholder="dd-mm-yyyy"
           name="phone"
           value={editFormData.phone}
           onChange={handleEditFormChange}
@@ -41,7 +39,6 @@ const EditableRow = ({
         <input
           type="text"
           required="required"
-          placeholder="dd-mm-yyyy"
           name="address"
           value={editFormData.address}
           onChange={handleEditFormChange}

@@ -42,15 +42,15 @@ const AddBorrower = () => {
 
   return (
     <div>
-      <Container className="mt-3 border border-success">
+      <Container className="mt-3 border border-dark">
         <div>
           <Button
-            variant="success mt-3 mb-3"
+            variant="dark mt-3 mb-3"
             onClick={() => setOpen(!open)}
             aria-controls="example-collapse-text"
             aria-expanded={open}
           >
-            Add Borrower +
+            Issue Book +
           </Button>
           <Collapse in={open}>
             <div id="example-collapse-text">

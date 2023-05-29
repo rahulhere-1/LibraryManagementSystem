@@ -50,8 +50,14 @@ const BorrowedTable = () => {
     const index = contacts.findIndex((contact) => contact.id === editContactId);
 
     newContacts[index] = editedContact;
+    axios
+      .put("http://localhost:8080/members", editedContact)
+      .then((res) => {
+        alert("Updated Successfully");
+        setContacts(newContacts);
+      })
+      .catch((err) => alert("something went wrong"));
 
-    setContacts(newContacts);
     setEditContactId(null);
   };
 

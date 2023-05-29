@@ -49,8 +49,14 @@ const BooksList = () => {
     );
 
     newContacts[index] = editedContact;
+    axios
+      .put("http://localhost:8080/library", editedContact)
+      .then((res) => {
+        alert("Updated Successfully");
+        setContacts(newContacts);
+      })
+      .catch((err) => alert("something went wrong"));
 
-    setContacts(newContacts);
     setEditContactId(null);
   };
 
