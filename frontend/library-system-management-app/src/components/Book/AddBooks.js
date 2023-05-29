@@ -16,6 +16,7 @@ const AddBooks = () => {
         .post("http://localhost:8080/library", values)
         .then(function (response) {
           alert("submitted successfully");
+          window.location.reload(true);
         })
         .catch(function (error) {
           alert(error);
