@@ -75,7 +75,15 @@ const BorrowedTable = () => {
 
   const handleDeleteClick = (contactId) => {
     const newContacts = [...contacts];
-
+    axios
+      .delete("http://localhost:8080/borrowed/member/" + contactId)
+      .then((res) => {
+        axios
+          .delete("http://localhost:8080/members/" + contactId)
+          .then((res) => alert("Deleted Successfully"))
+          .catch((err) => alert("something went wrong"));
+      })
+      .catch((err) => alert("something went wrong"));
     const index = contacts.findIndex((contact) => contact.id === contactId);
 
     newContacts.splice(index, 1);

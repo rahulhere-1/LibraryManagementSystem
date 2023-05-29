@@ -75,7 +75,17 @@ const BooksList = () => {
     const newContacts = [...contacts];
 
     const index = contacts.findIndex((contact) => contact.isbn === contactId);
-
+    axios
+      .delete("http://localhost:8080/borrowed/isbn/" + contactId)
+      .then((res) => {
+        axios
+          .delete("http://localhost:8080/library/" + contactId)
+          .then((res) => {
+            alert("Deleted Successfully");
+          })
+          .catch((err) => alert("something went wrong"));
+      })
+      .catch((error) => alert("something went wrong"));
     newContacts.splice(index, 1);
 
     setContacts(newContacts);

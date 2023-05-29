@@ -10,6 +10,7 @@ import com.example.sampleproject.librarymanagementsystem.members.Member;
 import com.example.sampleproject.librarymanagementsystem.members.MembersJpaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,10 +41,18 @@ public class ManagementSystemController {
 	}
 	
 
+	
 	@GetMapping(path="/library/{bookID}")
 	public Optional<Book> findThisBook(@PathVariable String bookID ) {
 		return bookRepository.findById(bookID);
 	}
+	
+	@DeleteMapping(path="/library/{bookID}")
+	public void deleteThisBook(@PathVariable String bookID ) {
+		bookRepository.deleteById(bookID);
+	}
+	
+	
 	
 	@GetMapping(path="/library/author/{author}")
 	public List<Book> findBookByAuthor(@PathVariable String author ) {
@@ -66,6 +75,11 @@ public class ManagementSystemController {
 		return memberRepository.findById(memberID);
 	}
 	
+	@DeleteMapping(path="/members/{memberID}")
+	public void removeThisMember(@PathVariable Long memberID) {
+		 memberRepository.deleteById(memberID);
+	}
+	
 	@GetMapping(path="/borrowed")
 	public List<Borrowed> retrieveAllBorrowers() {
 		return borrowedRepository.findAll();
@@ -73,7 +87,6 @@ public class ManagementSystemController {
 	
 	@PostMapping(path="/borrowed")
 	public void addBorrowers(@RequestBody Borrowed borrower) {
-		 
 		 borrowedRepository.save(borrower);
 	}
 	
@@ -86,6 +99,21 @@ public class ManagementSystemController {
 	@GetMapping(path="/borrowed/member/{id}")
 	public List<Borrowed> getByMemberId(@PathVariable Long id) {
 		return borrowedRepository.findByMemberId(id);
+	}
+	
+	@DeleteMapping(path="/borrowed/member/{id}")
+	public void removeIssuedBookByMember(@PathVariable Long id) {
+		 borrowedRepository.deleteByMemberId(id);
+	}
+	
+	@DeleteMapping(path="/borrowed/{id}")
+	public void removeIssuedBookById(@PathVariable Long id) {
+		borrowedRepository.deleteById(id);
+	}
+	
+	@DeleteMapping(path="/borrowed/isbn/{isbn}")
+	public void removeIssuedBookById(@PathVariable String isbn) {
+		 borrowedRepository.deleteByBookIsbn(isbn);
 	}
 	
 }

@@ -41,7 +41,7 @@ const AddBooks = () => {
               <Form className="p-3" onSubmit={formik.handleSubmit}>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="isbn">
-                    <Form.Label>Book ID</Form.Label>
+                    <Form.Label>Book ISBN</Form.Label>
                     <Form.Control
                       type="text"
                       name="isbn"
