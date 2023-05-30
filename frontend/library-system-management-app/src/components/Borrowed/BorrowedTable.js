@@ -4,7 +4,9 @@ import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import axios from "axios";
 const BorrowedTable = () => {
+  const tableData = new Map();
   const [contacts, setContacts] = useState([]);
+  const [rows, setRows] = useState(tableData);
 
   useEffect(() => {
     axios.get("http://localhost:8080/borrowed").then((res) => {
@@ -20,7 +22,9 @@ const BorrowedTable = () => {
         obj.issueDate = res.data[i].issueDate;
         obj.dueDate = res.data[i].dueDate;
         json.push(obj);
+        tableData.set(res.data[i].id, res.data[i]);
       }
+      setRows(tableData);
       setContacts(json);
     });
   }, []);
@@ -50,7 +54,7 @@ const BorrowedTable = () => {
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
-
+    console.log("this is line 59 , ", tableData);
     const editedContact = {
       id: editContactId,
       isbn: editFormData.isbn,
@@ -66,9 +70,18 @@ const BorrowedTable = () => {
     const index = contacts.findIndex((contact) => contact.id === editContactId);
 
     newContacts[index] = editedContact;
-
-    setContacts(newContacts);
-    setEditContactId(null);
+    console.log("this is line 73 , ", rows);
+    const obj = rows.get(editContactId);
+    obj.issueDate = editFormData.issueDate;
+    obj.dueDate = editFormData.dueDate;
+    axios
+      .put("http://localhost:8080/borrowed", obj)
+      .then((res) => {
+        alert("Updated Successfully");
+        setContacts(newContacts);
+        setEditContactId(null);
+      })
+      .catch((err) => alert("something went wrong"));
   };
 
   const handleEditClick = (event, contact) => {

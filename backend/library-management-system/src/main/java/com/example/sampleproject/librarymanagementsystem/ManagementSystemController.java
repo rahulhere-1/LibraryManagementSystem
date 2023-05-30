@@ -101,6 +101,12 @@ public class ManagementSystemController {
 		 borrowedRepository.save(borrower);
 	}
 	
+
+	@PutMapping(path="/borrowed")
+	public void updateBorrowers(@RequestBody Borrowed borrower) {
+		 borrowedRepository.save(borrower);
+	}
+	
 	
 	@GetMapping(path="/borrowed/isbn/{isbn}")
 	public List<Borrowed> getByIsbn(@PathVariable String isbn) {
