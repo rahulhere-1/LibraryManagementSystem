@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import com.example.sampleproject.librarymanagementsystem.books.*;
 import com.example.sampleproject.librarymanagementsystem.borrowedby.Borrowed;
-import com.example.sampleproject.librarymanagementsystem.borrowedby.BorrowedJpaRepository;
 import com.example.sampleproject.librarymanagementsystem.members.Member;
-import com.example.sampleproject.librarymanagementsystem.members.MembersJpaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,20 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ManagementSystemController {
-	
-	@Autowired
-	private BooksJpaRepository bookRepository;
-	
-	@Autowired
-	private MembersJpaRepository memberRepository;
-	
-	@Autowired
-	private BorrowedJpaRepository borrowedRepository;
 	
 	@Autowired
 	private SystemService service;
