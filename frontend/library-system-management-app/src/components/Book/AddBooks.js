@@ -46,6 +46,7 @@ const AddBooks = () => {
                       type="text"
                       name="isbn"
                       placeholder="Enter Book ID"
+                      required
                       onChange={formik.handleChange}
                       value={formik.values.isbn}
                     />
@@ -56,6 +57,7 @@ const AddBooks = () => {
                     <Form.Control
                       type="text"
                       name="author"
+                      required
                       onChange={formik.handleChange}
                       value={formik.values.author}
                       placeholder="Enter Author Here"
@@ -69,6 +71,7 @@ const AddBooks = () => {
                     type="text"
                     placeholder="Enter Boot Title Here"
                     name="title"
+                    required
                     onChange={formik.handleChange}
                     value={formik.values.title}
                   />

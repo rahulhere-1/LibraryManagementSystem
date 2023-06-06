@@ -47,6 +47,7 @@ const AddMembers = () => {
                     <Form.Label>Member Name</Form.Label>
                     <Form.Control
                       type="text"
+                      required
                       name="name"
                       placeholder="Enter Book ID"
                       onChange={formik.handleChange}
@@ -60,6 +61,7 @@ const AddMembers = () => {
                       type="text"
                       placeholder="Enter Author Here"
                       name="phone"
+                      required
                       onChange={formik.handleChange}
                       value={formik.values.phone}
                     />
