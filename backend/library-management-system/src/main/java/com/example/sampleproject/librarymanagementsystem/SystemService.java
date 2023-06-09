@@ -82,7 +82,7 @@ public class SystemService {
 	}
 	
 
-	public Optional<Member> retrieveAllMembers( Long memberID) {
+	public Optional<Member> getThisMembers( Long memberID) {
 		return memberRepository.findById(memberID);
 	}
 	

@@ -8,6 +8,8 @@ import com.example.sampleproject.librarymanagementsystem.borrowedby.Borrowed;
 import com.example.sampleproject.librarymanagementsystem.members.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,9 +42,14 @@ public class ManagementSystemController {
 
 	
 	@GetMapping(path="/library/{bookID}")
-	public Optional<Book> findThisBook(@PathVariable String bookID ) {
-		return service.findThisBook(bookID);
+	public ResponseEntity<Book> findThisBook(@PathVariable String bookID ) {
+		Optional<Book> res = service.findThisBook(bookID);
+		if(res.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		else return ResponseEntity.of(res); 
 	}
+	
 	
 	@DeleteMapping(path="/library/{bookID}")
 	public void deleteThisBook(@PathVariable String bookID ) {
@@ -73,8 +80,12 @@ public class ManagementSystemController {
 	}
 	
 	@GetMapping(path="/members/{memberID}")
-	public Optional<Member> retrieveAllMembers(@PathVariable Long memberID) {
-		return service.retrieveAllMembers(memberID);
+	public ResponseEntity<Member> retrieveAllMembers(@PathVariable Long memberID) {
+		Optional<Member> res = service.getThisMembers(memberID);
+		if(res.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		else return ResponseEntity.of(res); 
 	}
 	
 	@DeleteMapping(path="/members/{memberID}")

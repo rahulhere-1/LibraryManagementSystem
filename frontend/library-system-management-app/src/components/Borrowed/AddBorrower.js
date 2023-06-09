@@ -110,7 +110,12 @@ const AddBorrower = () => {
                 <Button variant="primary" type="submit">
                   Submit
                 </Button>
-                <Button className="m-2" variant="dark" type="reset">
+                <Button
+                  className="m-2"
+                  variant="dark"
+                  type="reset"
+                  onClick={formik.handleReset}
+                >
                   Clear
                 </Button>
               </Form>
